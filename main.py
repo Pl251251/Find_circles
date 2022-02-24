@@ -34,8 +34,8 @@ cv2.imwrite("test.jpg", resized2_)
 #pillow
 im = Image.open('test.jpg')
 im_rotate = im.rotate(12)
-
 im_rotate.save("test.jpg")
+
 #opencv
 img = cv2.imread('test.jpg',1)
 dim1 = img.shape[1]
@@ -45,6 +45,7 @@ dim4 = int((dim2/2) -h/2)
 dim5 = int((dim1/2) + w/2)
 dim6 = int((dim2/2) +h/2)
 img = img[dim4:dim6,dim3:dim5]
+cv2.imwrite("final.jpg", img)
 
 cv2.imshow('oval', img)
 cv2.waitKey(0)
