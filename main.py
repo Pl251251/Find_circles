@@ -4,8 +4,13 @@ import math
 import numpy as np
 #pillow
 im = Image.open('test_l3.jpg')
-im_rotate = im.rotate(348)
-im = im_rotate.save("test.jpg")
+
+w,h =im.size
+im2 = Image.new(im.mode, (2*w, 2*h), (255,255,255))
+im2.paste(im, (int(w/2), int(h/2)))
+
+im_rotate = im2.rotate(348)
+im_rotate.save("test.jpg")
 #opencv
 img = cv2.imread('test.jpg', 1)
 width = img.shape[1]
@@ -29,9 +34,17 @@ cv2.imwrite("test.jpg", resized2_)
 #pillow
 im = Image.open('test.jpg')
 im_rotate = im.rotate(12)
-im = im_rotate.save("test.jpg")
+
+im_rotate.save("test.jpg")
 #opencv
 img = cv2.imread('test.jpg',1)
+dim1 = img.shape[1]
+dim2 = img.shape[0]
+dim3 = int((dim1/2) - w/2)
+dim4 = int((dim2/2) -h/2)
+dim5 = int((dim1/2) + w/2)
+dim6 = int((dim2/2) +h/2)
+img = img[dim4:dim6,dim3:dim5]
 
 cv2.imshow('oval', img)
 cv2.waitKey(0)
