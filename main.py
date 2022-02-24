@@ -40,10 +40,10 @@ im_rotate.save("test.jpg")
 img = cv2.imread('test.jpg',1)
 dim1 = img.shape[1]
 dim2 = img.shape[0]
-dim3 = int((dim1/2) - w/2)
-dim4 = int((dim2/2) -h/2)
-dim5 = int((dim1/2) + w/2)
-dim6 = int((dim2/2) +h/2)
+dim3 = int((dim1/2) - w/2)+1
+dim4 = int((dim2/2) -h/2)+1
+dim5 = int((dim1/2) + w/2)-1
+dim6 = int((dim2/2) +h/2)-1
 img = img[dim4:dim6,dim3:dim5]
 cv2.imwrite("final.jpg", img)
 
