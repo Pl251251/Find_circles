@@ -30,8 +30,8 @@ try:
         if i[2] < a:
             a = i[2]
             b= i
-    cv2.circle(resized_,(b[0],b[1]),b[2],(0,0,255),2)
-    cv2.circle(resized_,(b[0],b[1]),2,(0,0,255),3)
+    cv2.circle(resized_,(b[0],b[1]),b[2],(0,0,255),6)
+    cv2.circle(resized_,(b[0],b[1]),2,(0,0,255),6)
 
 except:
     pass
@@ -49,20 +49,16 @@ im_rotate = im.rotate(12)
 im_rotate.save("test.jpg", quality =100)
 
 #opencv
+
 img = cv2.imread('test.jpg',1)
-dim1 = img.shape[1]
-dim2 = img.shape[0]
-dim3 = int((dim1/2) - w/2)+1
-dim4 = int((dim2/2) -h/2)+1
-dim5 = int((dim1/2) + w/2)-1
-dim6 = int((dim2/2) +h/2)-1
-img = img[dim4:dim6,dim3:dim5]
+
+img = img[(int((img.shape[0]/2) -h/2)+1):(int((img.shape[0]/2) +h/2)-1),(int((img.shape[1]/2) - w/2)+1):(int((img.shape[1]/2) + w/2)-1)]
+
 cv2.imwrite("final.jpg", img, [cv2.IMWRITE_PNG_COMPRESSION, 0])
+im = Image.open('final.jpg')
+
+im.save("test.jpg", quality =100)
 
 cv2.imshow('oval', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-im = Image.open('final.jpg')
-
-im_rotate.save("test.jpg", quality =100)
